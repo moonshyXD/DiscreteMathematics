@@ -1,0 +1,2 @@
+class Coefficent:
+    x: float
