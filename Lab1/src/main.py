@@ -2,37 +2,70 @@ from polynomial import Polynomial
 from number import Number
 from function_calculate import FunctionCalculate
 from errors import InputError
-from polynomial_mult import Karatsuba
+from karatsuba import Karatsuba
+from becnhamrk import run_benchmarks
 
 
-def input_polynomial() -> list:
-    raw_polynomial = input("Введите коэффиценты полинома через пробел: ")
-    return raw_polynomial.split()
+def input_polynomial(prompt="Введите коэффициенты полинома через пробел: ") -> list:
+    return input(prompt).split()
 
 
-def run():
-    try:
-        polynomial = Polynomial()
-        polynomial.polynomial = input_polynomial()
-        x = Number(input("Введите значение x: "))
+def main():
+    while True:
+        print("\n" + "-"*30)
+        print("   МЕНЮ УПРАВЛЕНИЯ ПОЛИНОМАМИ")
+        print("-"*30)
+        print("1. Вычислить значение полинома в точке (x)")
+        print("2. Перемножить два полинома (В лоб и Карацуба)")
+        print("3. Перемножить два числа (Number)")
+        print("4. Запустить бенчмарки (производительность)")
+        print("0. Выход")
 
-        result_direct = FunctionCalculate.direct(polynomial.polynomial, x)
-        result_gorner = FunctionCalculate.gorner(polynomial.polynomial, x)
+        choice = input("\nВыберите действие: ")
 
-        print(f"Значение полинома в точке x по прямой схеме: {result_direct}")
-        print(f"Значение полинома в точке x по схеме Горнера: {result_gorner}")
+        try:
+            if choice == "1":
+                poly = Polynomial()
+                poly.polynomial = input_polynomial()
+                x = Number(input("Введите значение x: "))
 
-        result_mult_direct = polynomial * polynomial
-        result_mult_karatsuba = Karatsuba.execute(polynomial, polynomial)
-    
-        print(f"Значение полинома в точке x по прямой схеме умножения: {result_mult_direct.polynomial}")
-        print(f"Значение полинома в точке x по схеме Карацубы: {result_mult_karatsuba.polynomial}")
+                val_direct = FunctionCalculate.direct(poly.polynomial, x)
+                val_gorner = FunctionCalculate.gorner(poly.polynomial, x)
 
-        res = FunctionCalculate.gorner(result_mult_karatsuba.polynomial)
-        print(res)
-    except InputError as e:
-        print(e)
+                print(f"\nРезультат (Прямой метод): {val_direct}")
+                print(f"Результат (Схема Горнера): {val_gorner}")
+
+            elif choice == "2":
+                p1 = Polynomial()
+                p1.polynomial = input_polynomial("Коэффициенты 1-го полинома: ")
+                p2 = Polynomial()
+                p2.polynomial = input_polynomial("Коэффициенты 2-го полинома: ")
+
+                res_direct = p1 * p2
+                res_karatsuba = Karatsuba.execute(p1, p2)
+
+                print(f"\nРезультат (В лоб):    {res_direct.polynomial}")
+                print(f"Результат (Карацуба): {res_karatsuba.polynomial}")
+
+            elif choice == "3":
+                n1 = Number(input("Введите первое число: "))
+                n2 = Number(input("Введите второе число: "))
+                print(f"\nРезультат умножения: {n1.value * n2.value}")
+
+            elif choice == "4":
+                run_benchmarks()
+
+            elif choice == "0":
+                print("Завершение работы...")
+                break
+            else:
+                print("Неверный выбор, попробуйте снова")
+
+        except InputError as e:
+            print(f"\nОшибка ввода: {e}")
+        except Exception as e:
+            print(f"\nПроизошла ошибка: {e}")
 
 
 if __name__ == "__main__":
-    run()
+    main()
