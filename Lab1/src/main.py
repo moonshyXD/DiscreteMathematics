@@ -24,7 +24,7 @@ def run():
 
         result_mult_direct = polynomial * polynomial
         result_mult_karatsuba = Karatsuba.execute(polynomial, polynomial)
-
+    
         print(f"Значение полинома в точке x по прямой схеме умножения: {result_mult_direct.polynomial}")
         print(f"Значение полинома в точке x по схеме Карацубы: {result_mult_karatsuba.polynomial}")
 

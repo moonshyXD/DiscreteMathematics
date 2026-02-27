@@ -1,11 +1,9 @@
 from number import Number
 
 from polynomial import Polynomial
-from metrics import get_time
 
 
 class FunctionCalculate:
-    @get_time
     @staticmethod
     def gorner(coefficents: Polynomial, x: Number | None = Number(10.0)):
         result = coefficents[0]
@@ -14,7 +12,6 @@ class FunctionCalculate:
 
         return result
 
-    @get_time
     @staticmethod
     def direct(coefficents: Polynomial, x: Number | None = Number(10.0)):
         result = 0

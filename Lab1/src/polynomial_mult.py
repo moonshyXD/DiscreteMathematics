@@ -1,9 +1,7 @@
 from polynomial import Polynomial
-from metrics import get_time
 
 
 class Karatsuba:
-    @get_time
     @staticmethod
     def execute(poly1: Polynomial, poly2: Polynomial) -> Polynomial:
         c1 = poly1._coefficients
