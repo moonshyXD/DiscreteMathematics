@@ -1,6 +1,5 @@
-from number import Number
-
-from polynomial import Polynomial
+from domain.number import Number
+from domain.polynomial import Polynomial
 
 
 class FunctionCalculate:

@@ -1,4 +1,4 @@
-from polynomial import Polynomial
+from domain.polynomial import Polynomial
 
 
 class Karatsuba:

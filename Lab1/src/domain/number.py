@@ -1,4 +1,4 @@
-from errors import InputError
+from domain.errors import InputError
 
 
 class Number:

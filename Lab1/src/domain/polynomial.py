@@ -1,5 +1,5 @@
 from typing import Any
-from number import Number
+from domain.number import Number
 
 
 class Polynomial:

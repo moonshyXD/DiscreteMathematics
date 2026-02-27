@@ -1,9 +1,9 @@
-from polynomial import Polynomial
-from number import Number
-from function_calculate import FunctionCalculate
-from errors import InputError
-from karatsuba import Karatsuba
-from becnhamrk import run_benchmarks
+from domain.polynomial import Polynomial
+from domain.number import Number
+from usecases.function_calculate import FunctionCalculate
+from domain.errors import InputError
+from usecases.karatsuba import Karatsuba
+from adapters.becnhamrk import run_benchmarks
 
 
 def input_polynomial(prompt="Введите коэффициенты полинома через пробел: ") -> list:

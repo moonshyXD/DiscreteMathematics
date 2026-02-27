@@ -1,10 +1,10 @@
 import time
 import random
 import sys
-from polynomial import Polynomial
-from karatsuba import Karatsuba
-from function_calculate import FunctionCalculate
-from number import Number
+from domain.polynomial import Polynomial
+from usecases.karatsuba import Karatsuba
+from usecases.function_calculate import FunctionCalculate
+from domain.number import Number
 
 sys.setrecursionlimit(10000)
 
@@ -42,7 +42,7 @@ def benchmark_numbers():
     sizes_eval = [1000, 10000, 100000, 500000, 1000000, 5000000, 10000000]
 
     print("\n### Сравнение вычисления значения: В лоб vs Горнер\n")
-    print("| Степень (N) | В лоб (сек) | Горнер (сек) | Ускорение |")
+    print("| Степень (N) | В лоб (сек) | Горнер (сек) | Победитель | Ускорение |")
 
     x_bench = Number(1.0000001)
 
@@ -59,7 +59,8 @@ def benchmark_numbers():
         t_gorner = time.perf_counter() - start
 
         speedup = t_direct / t_gorner if t_gorner > 0 else 0
-        print(f"| {n:<11} | {t_direct:<11.6f} | {t_gorner:<12.6f} | {speedup:.1f}x")
+        winner = "Горнер" if t_gorner < t_direct else "В лоб"
+        print(f"| {n:<11} | {t_direct:<11.6f} | {t_gorner:<12.6f} |{winner:<11} | {speedup:.1f}x")
 
 
 def run_benchmarks():
