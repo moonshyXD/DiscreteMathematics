@@ -25,7 +25,7 @@ class Karatsuba:
         c1 = poly1._coefficients
         c2 = poly2._coefficients
 
-        if len(c1) <= 64 or len(c2) <= 64:
+        if len(c1) <= 1 or len(c2) <= 1:
             return poly1 * poly2
 
         n = max(len(c1), len(c2))
